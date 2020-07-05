@@ -1,14 +1,18 @@
 package com.geekbrains.poplib.finalproject;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+import moxy.MvpAppCompatActivity;
+import moxy.presenter.InjectPresenter;
+
+public class MainActivity extends MvpAppCompatActivity implements MainView {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
+
+    @InjectPresenter
+    MainPresenter mainPresenter;
 }
