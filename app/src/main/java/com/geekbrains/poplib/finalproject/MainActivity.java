@@ -15,4 +15,11 @@ public class MainActivity extends MvpAppCompatActivity implements MainView {
 
     @InjectPresenter
     MainPresenter mainPresenter;
+
+//    @Override
+//    public void setCounter(int counter) {
+//        mainPresenter.increaseCounter();
+//    }
+
+
 }
