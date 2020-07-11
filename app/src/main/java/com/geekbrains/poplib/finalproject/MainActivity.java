@@ -5,10 +5,10 @@ import android.os.Bundle;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.geekbrains.poplib.finalproject.photorecycler.GridAdapter;
+
 import moxy.MvpAppCompatActivity;
 import moxy.presenter.InjectPresenter;
-
-import static androidx.recyclerview.widget.GridLayoutManager.DEFAULT_SPAN_COUNT;
 
 public class MainActivity extends MvpAppCompatActivity implements MainView {
 

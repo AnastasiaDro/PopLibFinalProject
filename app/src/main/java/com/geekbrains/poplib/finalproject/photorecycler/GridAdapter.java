@@ -1,4 +1,4 @@
-package com.geekbrains.poplib.finalproject;
+package com.geekbrains.poplib.finalproject.photorecycler;
 
 import android.media.Image;
 import android.util.Log;
@@ -10,6 +10,8 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.geekbrains.poplib.finalproject.R;
 
 import java.util.ArrayList;
 
