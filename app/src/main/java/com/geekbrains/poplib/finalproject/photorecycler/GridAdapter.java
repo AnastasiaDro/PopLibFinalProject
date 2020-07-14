@@ -11,19 +11,19 @@ import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.geekbrains.poplib.finalproject.MainPresenter;
 import com.geekbrains.poplib.finalproject.R;
 
 import java.util.ArrayList;
 
-public class GridAdapter extends RecyclerView.Adapter {
+import moxy.presenter.InjectPresenter;
+
+public class GridAdapter extends RecyclerView.Adapter<GridAdapter.MyViewHolder>  {
 
     private static final String TAG = "GridAdapter";
-    ArrayList <Image> imagesList;
-    int counter;
 
-//    public GridAdapter(ArrayList <Image> imagesList) {
-//        this.imagesList = imagesList;
-//    }
+    @InjectPresenter
+    GridPresenter gridPresenter;
 
     public GridAdapter() {
 
@@ -31,23 +31,31 @@ public class GridAdapter extends RecyclerView.Adapter {
 
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.grid_recycler_card, parent, false);
         return new MyViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(MyViewHolder holder, int position) {
         final ImageView imageView = holder.itemView.findViewById(R.id.recyclerImgView);
+        gridPresenter.onBindImageViewAtPosition(position, holder);
+        //изображение должно браться в другом месте, из презентера
         imageView.setImageResource(R.mipmap.ic_launcher);
     }
 
     @Override
     public int getItemCount() {
-        return 10;
+        return gridPresenter.getItemCount();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+//    @Override
+//    public void setCounter(int counter) {
+//        //что-то изменяется
+//        Log.d(TAG, "counter стал " + counter);
+//    }
+
+    public class MyViewHolder extends RecyclerView.ViewHolder implements GridView {
         public ImageView imageView;
         LinearLayout cardView;
 
@@ -56,10 +64,20 @@ public class GridAdapter extends RecyclerView.Adapter {
             imageView = itemView.findViewById(R.id.recyclerImgView);
             cardView = itemView.findViewById(R.id.recycler_card);
             imageView.setOnClickListener(v -> {
-                counter++;
-                Log.d(TAG, "каунтер стал "+ counter);
+                gridPresenter.increaseCounter();
             });
         }
+
+        @Override
+        public void setCounter(int counter) {
+            Log.d(TAG, "counter стал " + counter);
+        }
+
+        @Override
+        public void setImage() {
+
+        }
     }
+
 
 }

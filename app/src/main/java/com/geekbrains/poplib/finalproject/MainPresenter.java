@@ -13,7 +13,7 @@ public class MainPresenter extends MvpPresenter <MainView> {
 
     public MainPresenter(){
         Log.d(TAG, "created");
-        mainModel = new MainModel();
+
     }
 
     public void increaseCounter(){
